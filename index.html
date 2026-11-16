@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F8F5EF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Forme AI</title>
+<style>
+:root{--bg:#F8F5EF;--ink:#252B27;--sage:#708675;--line:#E4E6DE;--muted:#777E76}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{padding:26px 22px 12px}
+.brand{font-family:Georgia,serif;font-size:32px;letter-spacing:-1px}
+.small{color:var(--muted);font-size:13px}
+h1{font-family:Georgia,serif;font-size:30px;font-weight:400;margin:10px 0}
+h2{font-size:18px;margin:0 0 12px}
+main{padding:12px 20px 105px;max-width:600px;margin:auto}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;margin-bottom:15px}
+.hero{background:#E7EBE3}
+.pill{display:inline-block;background:#D6E0D3;border-radius:30px;padding:7px 12px;font-size:12px}
+button{font:inherit;cursor:pointer}
+.primary{width:100%;border:0;background:var(--ink);color:white;padding:15px;border-radius:13px;font-weight:600;margin-top:12px}
+.secondary{border:1px solid var(--line);background:white;padding:10px 14px;border-radius:12px}
+.day{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:13px 0;gap:12px}
+.day:last-child{border:0}
+.day button{border:0;background:transparent;text-align:left;color:inherit;flex:1}
+.day.active{color:#526F59;font-weight:700}
+.exercise{padding:15px 0;border-bottom:1px solid var(--line)}
+.exercise:last-child{border:0}
+.exercise strong{display:block;margin-bottom:5px}
+input[type=checkbox]{accent-color:var(--sage);width:20px;height:20px}
+.check{display:flex;align-items:center;gap:12px;padding:12px 0}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid var(--line);padding:12px 8px calc(12px + env(safe-area-inset-bottom));z-index:5}
+nav button{flex:1;border:0;background:none;color:#8A9189;font-size:12px;padding:8px 0}
+nav button.active{color:#3C6247;font-weight:700}
+.hidden{display:none}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+input[type=number]{width:70px;padding:9px;border:1px solid var(--line);border-radius:10px;font-size:16px}
+textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit}
+.stat{font-size:28px;font-weight:700}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">forme<span style="color:#7A967F">.</span> ai</div>
+<div class="small">YOUR PERSONAL WELLNESS STUDIO</div>
+</header>
+<main>
+<section id="today"></section>
+<section id="coach" class="hidden"></section>
+<section id="nutrition" class="hidden"></section>
+<section id="progress" class="hidden"></section>
+</main>
+<nav>
+<button onclick="tab('today')" class="active">Today</button>
+<button onclick="tab('coach')">Coach</button>
+<button onclick="tab('nutrition')">Nutrition</button>
+<button onclick="tab('progress')">Progress</button>
+</nav>
+<script>
+const workouts=[
+{name:"Full Body Strength A",type:"Strength",time:40,ex:[
+["Goblet squat","3 × 8–10","15 lb"],
+["Dumbbell floor press","3 × 8–10","10 lb each"],
+["Bent-over dumbbell row","3 × 10","15 lb each"],
+["Dumbbell Romanian deadlift","2 × 10–12","20 lb each"],
+["Dead bug","2 × 8 per side","Bodyweight"]]},
+{name:"Indoor Walk + Core",type:"Light movement",time:30,ex:[
+["Indoor walking","20 minutes","Bodyweight"],
+["Dead bug","2 × 8 per side","Bodyweight"],
+["Bird dog","2 × 8 per side","Bodyweight"]]},
+{name:"Full Body Strength B",type:"Strength",time:40,ex:[
+["Reverse lunge","3 × 8 per leg","Bodyweight"],
+["Standing dumbbell shoulder press","3 × 8–10","8 lb each"],
+["Bent-over dumbbell row","3 × 10–12","15 lb each"],
+["Floor glute bridge","3 × 12","Bodyweight"],
+["Side plank","2 × 25 seconds per side","Bodyweight"]]},
+{name:"Recovery + Mobility",type:"Recovery",time:25,ex:[
+["Easy indoor walking","10 minutes","Bodyweight"],
+["Cat-cow","2 × 8","Bodyweight"],
+["Hip mobility","5 minutes","Bodyweight"],
+["Gentle stretching","5 minutes","Bodyweight"]]},
+{name:"Full Body Circuit",type:"Circuit",time:40,ex:[
+["Squat to press","3 × 10","5 lb each"],
+["Alternating reverse lunges","3 × 12 total","Bodyweight"],
+["Dumbbell rows","3 × 12 total","10 lb each"],
+["Bicycle crunches","3 × 20 total","Bodyweight"],
+["Wall sit","3 × 40 seconds","Bodyweight"]]},
+{name:"Glutes, Arms + Core",type:"Strength",time:35,ex:[
+["Dumbbell sumo squat","3 × 10","20 lb"],
+["Floor glute bridge","3 × 12","Bodyweight"],
+["Dumbbell biceps curl","2 × 10–12","8 lb each"],
+["Dumbbell lateral raise","2 × 10–12","5 lb each"],
+["Bird dog","2 × 8 per side","Bodyweight"]]},
+{name:"Easy Walk + Stretch",type:"Recovery",time:25,ex:[
+["Indoor walking","20 minutes","Bodyweight"],
+["Gentle stretching","5 minutes","Bodyweight"]]}
+];
+const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+let selected=(new Date().getDay()+6)%7;
+let phase="overview";
+let checks={};
+let logs=JSON.parse(localStorage.getItem("forme_logs")||"[]");
+const el=id=>document.getElementById(id);
+const save=()=>localStorage.setItem("forme_logs",JSON.stringify(logs));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function tab(name){
+["today","coach","nutrition","progress"].forEach(id=>el(id).classList.toggle("hidden",id!==name));
+document.querySelectorAll("nav button").forEach((b,i)=>b.classList.toggle("active",["today","coach","nutrition","progress"][i]===name));
+if(name==="progress")renderProgress();
+}
+function equipment(w){
+let items=new Set(["Water bottle"]);
+w.ex.forEach(x=>{
+if(x[2].includes("lb"))items.add(x[2]+" dumbbell"+(x[2].includes("each")?" pair":""));
+if(/floor|dead bug|bird dog|plank|stretch|cat-cow|bicycle/i.test(x[0]))items.add("Yoga mat");
+});
+return [...items];
+}
+function render(){
+let w=workouts[selected];
+if(phase==="overview"){
+el("today").innerHTML=`
+<div class="small">YOUR MOVEMENT, YOUR MOMENT</div>
+<h1>Today is yours.</h1>
+<div class="card hero">
+<span class="pill">${esc(w.type)}</span>
+<h1>${esc(w.name)}</h1>
+<div class="small">${w.time} MINUTES · INDOOR · HOME</div>
+<button class="primary" onclick="start()">Prepare workout →</button>
+</div>
+<div class="card"><h2>Your weekly rhythm</h2>
+${workouts.map((x,i)=>`<div class="day ${selected===i?"active":""}">
+<button onclick="choose(${i})"><strong>${["Mon","Tue","Wed","Thu","Fri","Sat","Sun"][i]}</strong> · ${esc(x.name)}</button>
+<span class="small">${x.time}m</span></div>`).join("")}
+</div>
+<div class="card"><h2>Your home studio</h2>
+<div class="small">Dumbbell pairs: 5, 8, 10, 15, 20, 25 lb<br>Yoga mat · Bodyweight<br>Optional: 25 lb kettlebell and resistance bands</div></div>`;
+}else if(phase==="prepare"){
+let items=equipment(w);
+el("today").innerHTML=`<h1>Set your space.</h1>
+<div class="small">${esc(w.name)}</div>
+<div class="card"><h2>Bring only what you need</h2>
+${items.map((x,i)=>`<label class="check"><input type="checkbox" onchange="checks[${i}]=this.checked;ready()" ${checks[i]?"checked":""}>${esc(x)}</label>`).join("")}
+<button class="primary" id="readyBtn" onclick="phase='workout';render()" ${items.every((_,i)=>checks[i])?"":"disabled"}>Start workout →</button>
+</div>
+<button class="secondary" onclick="phase='overview';render()">Back</button>`;
+}else{
+el("today").innerHTML=`<h1>You're showing up.</h1>
+<div class="small">${esc(w.name)} · ${w.time} MIN</div>
+<div class="card"><h2>Workout session</h2>
+${w.ex.map((x,i)=>`<div class="exercise">
+<strong>${i+1}. ${esc(x[0])}</strong>
+<div class="small">${esc(x[1])} · Suggested: ${esc(x[2])}</div>
+<label class="check"><input type="checkbox" class="done"> Completed</label>
+</div>`).join("")}
+<button class="primary" onclick="finish()">Finish workout ✓</button></div>
+<button class="secondary" onclick="phase='overview';render()">Exit session</button>`;
+}
+}
+function ready(){let w=workouts[selected];el("readyBtn").disabled=!equipment(w).every((_,i)=>checks[i]);}
+function choose(i){selected=i;phase="overview";checks={};render();}
+function start(){phase="prepare";checks={};render();}
+function finish(){
+const completed=[...document.querySelectorAll(".done")].filter(x=>x.checked).length;
+if(!completed){alert("Check off at least one exercise before finishing.");return;}
+logs.push({date:new Date().toISOString(),name:workouts[selected].name,completed,total:workouts[selected].ex.length});
+save();phase="overview";render();tab("progress");
+}
+function renderProgress(){
+el("progress").innerHTML=`<h1>Your progress.</h1>
+<div class="card"><div class="small">WORKOUT SESSIONS</div><div class="stat">${logs.length}</div></div>
+<div class="card"><h2>Workout history</h2>
+${logs.length?logs.slice().reverse().map(x=>`<div class="day"><div><strong>${esc(x.name)}</strong><div class="small">${new Date(x.date).toLocaleDateString()} · ${x.completed}/${x.total} exercises</div></div>✓</div>`).join(""):"<p class='small'>Your completed workouts will appear here.</p>"}
+</div>`;
+}
+el("coach").innerHTML=`<h1>Your coach.</h1><div class="card"><h2>Move with intention.</h2><p class="small">Your adaptive AI coach is coming in a future version. For now, follow your foundation program and choose a lighter session when recovery is needed.</p></div>`;
+el("nutrition").innerHTML=`<h1>Nourish yourself.</h1><div class="card"><h2>Nutrition studio</h2><p class="small">Meal planning, protein guidance and photo logging are planned for future versions.</p></div>`;
+render();
+</script>
+</body>
+</html>
