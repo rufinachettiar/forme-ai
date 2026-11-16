@@ -3,198 +3,414 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F8F5EF">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Forme AI</title>
 <style>
-:root{--bg:#f8f5ef;--ink:#28342c;--sage:#718b76;--pale:#eaf0e8;--line:#e1e6df;--muted:#758078}
+:root{
+--cream:#f8f5ef;
+--white:#fffefa;
+--sage:#778d77;
+--light:#e9eee6;
+--dark:#27372d;
+--muted:#778176;
+--line:#e1e5dc;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px -apple-system,BlinkMacSystemFont,sans-serif}
-header,main{max-width:600px;margin:auto}
-header{padding:24px 20px 5px}
-main{padding:12px 18px 115px}
-.logo{font:34px Georgia,serif}.logo span{color:var(--sage)}
-h1{font:normal 30px Georgia,serif;margin:12px 0 18px}
-h2{font-size:18px;margin:0 0 12px}
-h3{font-size:16px;margin:0 0 8px}
+body{
+margin:0;background:var(--cream);color:var(--dark);
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+font-size:15px
+}
+header,main{max-width:620px;margin:auto}
+header{padding:23px 20px 10px}
+main{padding:10px 17px 115px}
+.logo{font:35px Georgia,serif;letter-spacing:-1px}
+.logo span{color:var(--sage)}
+.eyebrow{
+font-size:11px;letter-spacing:1.5px;
+font-weight:700;color:var(--sage)
+}
+h1{font:normal 31px Georgia,serif;margin:13px 0}
+h2{font:normal 24px Georgia,serif;margin:8px 0}
+h3{font-size:17px;margin:0 0 8px}
 p{line-height:1.5}
 .muted{font-size:13px;color:var(--muted)}
-.eyebrow{font-size:11px;letter-spacing:1.3px;font-weight:700;color:var(--sage)}
-.card{background:white;border:1px solid var(--line);border-radius:19px;padding:18px;margin-bottom:14px}
-.hero{background:var(--pale)}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.btn{border:0;border-radius:12px;background:var(--ink);color:white;padding:13px 16px;min-height:44px;font:600 14px -apple-system,sans-serif;cursor:pointer}
-.btn:disabled{opacity:.4}
+.card{
+background:var(--white);
+border:1px solid var(--line);
+border-radius:20px;
+padding:17px;
+margin-bottom:15px;
+overflow:hidden
+}
+.hero{background:var(--light)}
+.btn{
+border:0;border-radius:12px;
+padding:14px 17px;
+background:var(--dark);color:white;
+font:600 14px -apple-system,sans-serif;
+min-height:46px;
+cursor:pointer
+}
+.btn:disabled{opacity:.45}
 .wide{width:100%}
-.outline{background:white;color:var(--ink);border:1px solid var(--line)}
-.small{font-size:12px;padding:8px 10px;min-height:34px}
-.day{border-bottom:1px solid var(--line);padding:13px 0}
+.outline{
+background:var(--white);
+color:var(--dark);
+border:1px solid var(--line)
+}
+.small{padding:8px 11px;min-height:34px;font-size:12px}
+.row{
+display:flex;align-items:center;
+justify-content:space-between;gap:10px
+}
+.day{
+border-bottom:1px solid var(--line);
+padding:13px 0
+}
 .day:last-child{border:0}
-.day button{border:0;background:none;color:inherit;text-align:left;font:inherit;flex:1}
+.day button{
+background:none;border:0;
+font:inherit;color:inherit;
+text-align:left;flex:1
+}
 .active{color:var(--sage);font-weight:700}
-.choices{display:flex;flex-wrap:wrap;gap:8px}
-.choice{border:1px solid var(--line);background:white;padding:11px;border-radius:10px;font:inherit}
-.choice.on{background:var(--sage);color:white}
-input,select{border:1px solid #d3ddd3;border-radius:9px;padding:9px;background:white;color:var(--ink);font:inherit}
-input[type=number]{width:100%;min-width:0}
-input[type=checkbox]{accent-color:var(--sage);width:21px;height:21px}
-.check{display:flex;gap:12px;align-items:center;padding:12px 0}
-.set{display:grid;grid-template-columns:30px 1fr 1fr 48px;gap:8px;align-items:end;padding:10px 0;border-bottom:1px solid var(--line)}
+.media{
+height:190px;
+background:linear-gradient(135deg,#f2ede4,#e3e9dd);
+border-radius:15px;
+margin:13px 0;
+overflow:hidden;
+display:flex;align-items:center;
+justify-content:center
+}
+.media img{
+width:100%;height:100%;
+object-fit:contain
+}
+.media-fallback{
+text-align:center;
+padding:20px;color:var(--sage)
+}
+.media-fallback strong{
+display:block;font:23px Georgia,serif;
+margin-bottom:8px
+}
+.media-fallback span{font-size:12px}
+.set{
+display:grid;
+grid-template-columns:29px 1fr 1fr 52px;
+gap:8px;
+align-items:end;
+margin:12px 0
+}
 .set label{font-size:11px;color:var(--muted)}
-.set button{min-height:42px;border-radius:9px;border:1px solid var(--line);background:var(--pale)}
-.set button.done{background:var(--sage);color:white}
-.exercise{padding:16px 0;border-bottom:1px solid var(--line)}
-.exercise:last-child{border:0}
-.stat{font:32px Georgia,serif}
-.note{background:var(--pale);border-radius:11px;padding:12px;font-size:13px;line-height:1.5}
+.set input{
+display:block;
+width:100%;min-width:0;
+border:1px solid var(--line);
+border-radius:10px;
+padding:11px 7px;
+font:inherit;
+background:white
+}
+.set button{
+border:1px solid var(--line);
+background:var(--light);
+border-radius:10px;
+min-height:43px;
+font-weight:600
+}
+.set button.done{
+background:var(--sage);
+color:white
+}
+.hint{
+background:var(--light);
+border-radius:11px;
+padding:11px 13px;
+font-size:13px;
+line-height:1.5
+}
+select{
+width:100%;
+border:1px solid var(--line);
+border-radius:10px;
+background:white;
+padding:12px;
+font:inherit
+}
+.stat{font:34px Georgia,serif}
 .hidden{display:none}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:white;border-top:1px solid var(--line);padding:9px 8px calc(9px + env(safe-area-inset-bottom))}
-nav button{flex:1;border:0;background:none;font-size:12px;color:var(--muted);padding:11px 0}
+nav{
+position:fixed;bottom:0;left:0;right:0;
+display:flex;
+background:var(--white);
+border-top:1px solid var(--line);
+padding:9px 8px calc(9px + env(safe-area-inset-bottom))
+}
+nav button{
+flex:1;border:0;background:none;
+padding:11px 0;color:var(--muted);
+font-size:12px
+}
 nav button.on{color:var(--sage);font-weight:700}
 </style>
 </head>
 <body>
+
 <header>
 <div class="logo">forme<span>.</span> ai</div>
-<div class="eyebrow">PERSONAL STRENGTH STUDIO · V0.3 FIXED</div>
+<div class="eyebrow">YOUR PERSONAL STRENGTH STUDIO · V0.4</div>
 </header>
+
 <main>
 <section id="today"></section>
 <section id="coach" class="hidden"></section>
 <section id="nutrition" class="hidden"></section>
 <section id="progress" class="hidden"></section>
 </main>
+
 <nav>
 <button class="on" onclick="tab('today')">Today</button>
 <button onclick="tab('coach')">Coach</button>
 <button onclick="tab('nutrition')">Nutrition</button>
 <button onclick="tab('progress')">Progress</button>
 </nav>
+
 <script>
 "use strict";
 
+/*
+Each exercise:
+name, reps per set, weights per set,
+equipment, coaching cue, GIF filename.
+
+For "pair", weight is PER DUMBBELL.
+For "one", weight is for one dumbbell.
+*/
+
 const plan=[
-{name:"Full Body Strength A",minutes:40,ex:[
-["Goblet squat",[15,12,10],[10,15,15],"one"],
-["Dumbbell floor press",[12,10,8],[5,8,10],"pair"],
-["Bent-over dumbbell row",[15,12,10],[8,10,10],"pair"],
-["Dumbbell Romanian deadlift",[15,12,10],[10,15,15],"pair"],
-["Dead bug (per side)",[8,8],[0,0],"none"]
+{
+name:"Full Body Strength A",minutes:40,
+ex:[
+["Goblet squat",[15,12,10],[10,15,15],"one",
+"Keep chest tall and lower with control.",
+"goblet-squat.gif"],
+["Dumbbell floor press",[12,10,8],[5,8,10],"pair",
+"Keep elbows slightly tucked.",
+"floor-press.gif"],
+["Bent-over dumbbell row",[15,12,10],[8,10,10],"pair",
+"Hinge at hips and pull elbows toward ribs.",
+"bent-over-row.gif"],
+["Dumbbell Romanian deadlift",[15,12,10],[10,15,15],"pair",
+"Push hips back; keep weights near legs.",
+"romanian-deadlift.gif"],
+["Dead bug (each side)",[8,8],[0,0],"none",
+"Keep your trunk steady and move slowly.",
+"dead-bug.gif"]
 ]},
-{name:"Indoor Walk + Core",minutes:30,ex:[
-["Indoor walking (minutes)",[20],[0],"none"],
-["Dead bug (per side)",[8,8],[0,0],"none"],
-["Bird dog (per side)",[8,8],[0,0],"none"]
+{
+name:"Indoor Walk + Core",minutes:30,
+ex:[
+["Indoor walking (minutes)",[20],[0],"none",
+"Walk at a comfortable pace.","indoor-walk.gif"],
+["Dead bug (each side)",[8,8],[0,0],"none",
+"Control your lower back.","dead-bug.gif"],
+["Bird dog (each side)",[8,8],[0,0],"none",
+"Keep hips level.","bird-dog.gif"]
 ]},
-{name:"Full Body Strength B",minutes:40,ex:[
-["Reverse lunge (per leg)",[12,10,8],[0,5,8],"pair"],
-["Standing shoulder press",[15,12,10],[5,8,8],"pair"],
-["Bent-over dumbbell row",[15,12,10],[8,10,10],"pair"],
-["Floor glute bridge",[15,12,10],[0,0,0],"none"],
-["Side plank (seconds/side)",[20,25],[0,0],"none"]
+{
+name:"Full Body Strength B",minutes:40,
+ex:[
+["Reverse lunge (each leg)",[12,10,8],[0,5,8],"pair",
+"Step back and keep your balance.","reverse-lunge.gif"],
+["Standing shoulder press",[15,12,10],[5,8,8],"pair",
+"Press overhead without arching your back.",
+"shoulder-press.gif"],
+["Bent-over dumbbell row",[15,12,10],[8,10,10],"pair",
+"Keep your torso stable.","bent-over-row.gif"],
+["Floor glute bridge",[15,12,10],[0,0,0],"none",
+"Lift hips by squeezing your glutes.",
+"glute-bridge.gif"],
+["Side plank (seconds each side)",[20,25],[0,0],"none",
+"Keep your body aligned.","side-plank.gif"]
 ]},
-{name:"Recovery + Mobility",minutes:25,ex:[
-["Indoor walking (minutes)",[10],[0],"none"],
-["Cat-cow",[8,8],[0,0],"none"],
-["Hip mobility (minutes)",[5],[0],"none"],
-["Gentle stretching (minutes)",[5],[0],"none"]
+{
+name:"Recovery + Mobility",minutes:25,
+ex:[
+["Indoor walking (minutes)",[10],[0],"none",
+"Keep the pace easy.","indoor-walk.gif"],
+["Cat-cow",[8,8],[0,0],"none",
+"Move gently through your spine.","cat-cow.gif"],
+["Hip mobility (minutes)",[5],[0],"none",
+"Use a comfortable range of motion.","hip-mobility.gif"],
+["Gentle stretching (minutes)",[5],[0],"none",
+"Breathe and avoid forcing a stretch.","stretching.gif"]
 ]},
-{name:"Full Body Circuit",minutes:40,ex:[
-["Squat to press",[12,10,8],[5,5,8],"pair"],
-["Alternating reverse lunge (total)",[15,12,10],[0,5,5],"pair"],
-["Dumbbell row (total)",[15,12,10],[8,10,10],"pair"],
-["Bicycle crunch (total)",[20,20],[0,0],"none"],
-["Wall sit (seconds)",[30,40],[0,0],"none"]
+{
+name:"Full Body Circuit",minutes:40,
+ex:[
+["Squat to press",[12,10,8],[5,5,8],"pair",
+"Keep the movement smooth and controlled.",
+"squat-to-press.gif"],
+["Alternating reverse lunge (total)",[15,12,10],[0,5,5],"pair",
+"Step back carefully.","reverse-lunge.gif"],
+["Dumbbell row (total)",[15,12,10],[8,10,10],"pair",
+"Keep your back stable.","bent-over-row.gif"],
+["Bicycle crunch (total)",[20,20],[0,0],"none",
+"Rotate gently without pulling your neck.",
+"bicycle-crunch.gif"],
+["Wall sit (seconds)",[30,40],[0,0],"none",
+"Keep feet planted.","wall-sit.gif"]
 ]},
-{name:"Glutes, Arms + Core",minutes:35,ex:[
-["Dumbbell sumo squat",[15,12,10],[10,15,15],"one"],
-["Floor glute bridge",[15,12,10],[0,0,0],"none"],
-["Dumbbell biceps curl",[15,12,10],[5,8,8],"pair"],
-["Dumbbell lateral raise",[12,10,8],[5,5,5],"pair"],
-["Bird dog (per side)",[8,8],[0,0],"none"]
+{
+name:"Glutes, Arms + Core",minutes:35,
+ex:[
+["Dumbbell sumo squat",[15,12,10],[10,15,15],"one",
+"Keep knees aligned with toes.","sumo-squat.gif"],
+["Floor glute bridge",[15,12,10],[0,0,0],"none",
+"Push through your heels.","glute-bridge.gif"],
+["Dumbbell biceps curl",[15,12,10],[5,8,8],"pair",
+"Keep elbows close to your sides.","biceps-curl.gif"],
+["Dumbbell lateral raise",[12,10,8],[5,5,5],"pair",
+"Lift slowly without shrugging.",
+"lateral-raise.gif"],
+["Bird dog (each side)",[8,8],[0,0],"none",
+"Keep your hips still.","bird-dog.gif"]
 ]},
-{name:"Easy Walk + Stretch",minutes:25,ex:[
-["Indoor walking (minutes)",[20],[0],"none"],
-["Gentle stretching (minutes)",[5],[0],"none"]
+{
+name:"Easy Walk + Stretch",minutes:25,
+ex:[
+["Indoor walking (minutes)",[20],[0],"none",
+"Keep the pace relaxed.","indoor-walk.gif"],
+["Gentle stretching (minutes)",[5],[0],"none",
+"Stretch comfortably.","stretching.gif"]
 ]}
 ];
 
 const days=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-const options=[0,5,8,10,15,20,25];
 const $=id=>document.getElementById(id);
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-function read(k,f){
-try{return JSON.parse(localStorage.getItem(k))??f}
-catch{return f}
+function esc(s){
+return String(s).replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",
+'"':"&quot;","'":"&#39;"
+}[c]));
 }
-let db=read("forme_v03",null);
-if(!db||typeof db!=="object")db={history:[],weights:{},feedback:{},draft:null};
+
+function read(key,fallback){
+try{
+return JSON.parse(localStorage.getItem(key))??fallback;
+}catch{return fallback}
+}
+
+let db=read("forme_v04",null);
+
+if(!db||typeof db!=="object"){
+db={history:[],weights:{},feedback:{},draft:null};
+}
+
 db.history??=[];
 db.weights??={};
 db.feedback??={};
 db.draft??=null;
 
 function save(){
-try{localStorage.setItem("forme_v03",JSON.stringify(db))}
-catch{alert("Unable to save workout data.")}
+try{
+localStorage.setItem("forme_v04",JSON.stringify(db));
+}catch{
+alert("Unable to save your workout data.");
+}
 }
 
+/* Preserve completed workouts from older versions. */
 if(!db.migrated){
+const v3=read("forme_v03",null);
 const v2=read("forme_v02",null);
-if(v2&&Array.isArray(v2.history)){
-db.history=v2.history.map((x,i)=>({...x,id:"v2-"+i+"-"+String(x.id??"")}));
-if(v2.draft)db.oldDraftNotice=true;
-}else{
 const v1=read("forme_logs",[]);
-if(Array.isArray(v1))db.history=v1.map((x,i)=>({...x,id:"v1-"+i,legacy:true}));
+
+const source=
+v3&&Array.isArray(v3.history)?v3:
+v2&&Array.isArray(v2.history)?v2:null;
+
+if(source){
+db.history=source.history.map((x,i)=>({
+...x,id:"import-"+i+"-"+String(x.id??"")
+}));
+
+if(source===v3){
+db.weights=source.weights||{};
+db.feedback=source.feedback||{};
 }
+}else if(Array.isArray(v1)){
+db.history=v1.map((x,i)=>({
+...x,id:"import-v1-"+i,legacy:true
+}));
+}
+
 db.migrated=true;
 save();
 }
 
 let day=(new Date().getDay()+6)%7;
 let stage="home";
-let ready={energy:3,soreness:2,time:40,pain:false};
 let session=null;
 
-function tab(t){
-["today","coach","nutrition","progress"].forEach(x=>$(x).classList.toggle("hidden",x!==t));
-document.querySelectorAll("nav button").forEach((b,i)=>b.classList.toggle("on",["today","coach","nutrition","progress"][i]===t));
-if(t==="progress")progress();
-if(t==="coach")coach();
-}
-function choose(i){day=i;stage="home";render()}
-function key(i){return day+"-"+i}
-function weights(i){
-const x=plan[day].ex[i];
-const a=db.weights[key(i)];
-return Array.isArray(a)&&a.length===x[1].length?a.slice():x[2].slice();
-}
-function changeWeight(i,j,v){
-let a=weights(i);
-a[j]=Number(v);
-db.weights[key(i)]=a;
-save();
-}
-function recommendation(i){
-const f=db.feedback[key(i)];
-if(!f)return "Starting prescription";
-if(f==="easy")return "Last time: easy. Consider a small increase when ready.";
-if(f==="right")return "Last time: just right. Repeat until consistent.";
-if(f==="hard")return "Last time: hard. Maintain or reduce weight.";
-return "Last time: discomfort. Avoid painful movement.";
-}
-function gear(){
-const items=new Set(["Water bottle"]);
-plan[day].ex.forEach((x,i)=>{
-weights(i).forEach(n=>{
-if(x[3]!=="none"&&n>0)items.add(n+" lb dumbbell "+(x[3]==="pair"?"pair":"(one)"));
+function tab(name){
+const names=["today","coach","nutrition","progress"];
+
+names.forEach(x=>{
+$(x).classList.toggle("hidden",x!==name);
 });
-if(/floor|dead bug|bird dog|plank|stretch|mobility|cat-cow|crunch|bridge/i.test(x[0]))items.add("Yoga mat");
+
+document.querySelectorAll("nav button").forEach((b,i)=>{
+b.classList.toggle("on",names[i]===name);
 });
-return [...items];
+
+if(name==="progress")progress();
+if(name==="coach")coach();
+}
+
+function choose(i){
+day=i;
+stage="home";
+render();
+}
+
+function key(d,i){
+return d+"-"+i;
+}
+
+function getWeights(d,i){
+const x=plan[d].ex[i];
+const stored=db.weights[key(d,i)];
+
+return Array.isArray(stored)&&
+stored.length===x[1].length
+?stored.slice():x[2].slice();
+}
+
+/*
+Videos are automatic.
+Put GIFs inside a GitHub folder named media.
+Missing GIFs display a neutral fallback.
+*/
+function media(x){
+return `
+<div class="media">
+<img
+src="media/${encodeURIComponent(x[5])}"
+alt="${esc(x[0])} demonstration"
+loading="lazy"
+onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+<div class="media-fallback" hidden>
+<strong>${esc(x[0])}</strong>
+<span>Movement demonstration</span>
+</div>
+</div>`;
 }
 
 function render(){
@@ -202,175 +418,169 @@ const w=plan[day];
 
 if(stage==="home"){
 $("today").innerHTML=`
-<div class="eyebrow">TRAIN WITH INTENTION</div>
-<h1>Your strength, your pace.</h1>
-${db.draft?`<div class="card hero"><h2>Unfinished workout</h2><button class="btn wide" onclick="resume()">Resume workout</button></div>`:""}
-${db.oldDraftNotice?`<div class="card"><p class="muted">Your unfinished V0.2 workout was not converted. Completed history was retained.</p><button class="btn outline small" onclick="db.oldDraftNotice=false;save();render()">Dismiss</button></div>`:""}
+<div class="eyebrow">TODAY'S WORKOUT</div>
+<h1>Move with purpose.</h1>
+
+${db.draft?`
 <div class="card hero">
-<div class="eyebrow">SELECTED WORKOUT</div>
-<h1>${esc(w.name)}</h1>
-<p class="muted">${w.minutes} MIN · HOME STUDIO</p>
-<button class="btn wide" onclick="stage='ready';render()">Prepare workout →</button>
+<h3>Workout in progress</h3>
+<p class="muted">
+${esc(plan[db.draft.day]?.name||"Saved session")}
+</p>
+<button class="btn wide" onclick="resume()">
+Resume workout →
+</button>
+</div>`:""}
+
+<div class="card hero">
+<div class="eyebrow">${days[day]} · ${w.minutes} MINUTES</div>
+<h2>${esc(w.name)}</h2>
+<p class="muted">
+${w.ex.length} exercises · Dumbbells and bodyweight
+</p>
+<button class="btn wide" onclick="startWorkout()">
+Start workout →
+</button>
 </div>
-<div class="card"><h2>Weekly training plan</h2>
-${plan.map((x,i)=>`<div class="row day ${i===day?"active":""}"><button onclick="choose(${i})"><b>${days[i]}</b> · ${esc(x.name)}</button><span class="muted">${x.minutes}m</span></div>`).join("")}
-</div>`;
-}
 
-if(stage==="ready"){
-$("today").innerHTML=`
-<h1>How are you feeling?</h1>
 <div class="card">
-<h2>Daily readiness</h2>
-<p>Energy</p>
-<div class="choices">${[1,2,3,4,5].map(n=>`<button class="choice ${ready.energy===n?"on":""}" onclick="setReady('energy',${n})">${n}</button>`).join("")}</div>
-<p class="muted">1 low · 5 excellent</p>
-<p>Muscle soreness</p>
-<div class="choices">${[1,2,3,4,5].map(n=>`<button class="choice ${ready.soreness===n?"on":""}" onclick="setReady('soreness',${n})">${n}</button>`).join("")}</div>
-<p class="muted">1 none · 5 very sore</p>
-<p>Time available</p>
-<div class="choices">${[10,20,30,40,45].map(n=>`<button class="choice ${ready.time===n?"on":""}" onclick="setReady('time',${n})">${n}m</button>`).join("")}</div>
-<label class="check"><input type="checkbox" ${ready.pain?"checked":""} onchange="ready.pain=this.checked;render()">I have pain or discomfort today</label>
-${ready.pain?'<div class="note">Avoid painful exercises. Do not push through significant or unexplained pain.</div>':""}
-${ready.energy<=2||ready.soreness>=4?'<p class="note">Low readiness: consider recovery or reducing workout volume.</p>':""}
-<p class="muted">Readiness does not automatically adjust your workout yet.</p>
-<button class="btn wide" onclick="stage='weights';render()">Review my sets →</button>
-</div>`;
-}
-
-if(stage==="weights"){
-$("today").innerHTML=`
-<h1>Your exact workout.</h1>
-<div class="card">
-<p class="muted">Weights are per hand when using two dumbbells. These are adjustable starting estimates.</p>
+<h3>Today's exercises</h3>
 ${w.ex.map((x,i)=>`
-<div class="exercise">
-<h3>${esc(x[0])}</h3>
-<p class="muted">${x[3]==="pair"?"Two dumbbells · weight per hand":x[3]==="one"?"One dumbbell":"Bodyweight"}</p>
-<div class="note">${esc(recommendation(i))}</div>
-${x[1].map((r,j)=>`
-<div class="row day">
-<span><b>Set ${j+1}</b> · ${r} ${/minutes|seconds/i.test(x[0])?"min/sec":"reps"}</span>
-${x[3]==="none"?'<span class="muted">Bodyweight</span>':
-`<select onchange="changeWeight(${i},${j},this.value)">
-${options.map(n=>`<option value="${n}" ${weights(i)[j]===n?"selected":""}>${n?n+" lb":"Bodyweight"}</option>`).join("")}
-</select>`}
+<div class="day">
+<b>${i+1}. ${esc(x[0])}</b>
+<div class="muted">
+${x[1].map((r,j)=>
+r+" × "+(x[3]==="none"
+?"bodyweight":getWeights(day,i)[j]+" lb")
+).join(" · ")}
+</div>
 </div>`).join("")}
-</div>`).join("")}
-<button class="btn wide" onclick="stage='gear';render()">Equipment checklist →</button>
-</div>`;
-}
+</div>
 
-if(stage==="gear"){
-const items=gear();
-$("today").innerHTML=`
-<h1>Prepare your space.</h1>
 <div class="card">
-<h2>Today's equipment</h2>
-<p class="muted">Tick each item when it's ready.</p>
-<div id="equipment-list">
-${items.map(x=>`<label class="check"><input type="checkbox" class="gear-check" onchange="checkReady()">${esc(x)}</label>`).join("")}
-</div>
-<p class="muted" id="gear-status">Check all items to begin.</p>
-<button id="start" class="btn wide" disabled onclick="launch()">Start workout →</button>
-</div>
-<button class="btn outline" onclick="stage='weights';render()">Adjust weights</button>`;
-checkReady();
+<h3>Your weekly plan</h3>
+${plan.map((x,i)=>`
+<div class="row day ${i===day?"active":""}">
+<button onclick="choose(${i})">
+<b>${days[i]}</b> · ${esc(x.name)}
+</button>
+<span class="muted">${x.minutes}m</span>
+</div>`).join("")}
+</div>`;
 }
 
 if(stage==="work"){
-const x=plan[session.day];
-const completed=session.sets.flat().filter(s=>s.done).length;
+const w=plan[session.day];
+const done=session.sets.flat().filter(s=>s.done).length;
 const total=session.sets.flat().length;
+
 $("today").innerHTML=`
-<h1>${esc(x.name)}</h1>
+<div class="eyebrow">WORKOUT IN PROGRESS</div>
+<h1>${esc(w.name)}</h1>
+
 <div class="card hero">
+<div class="row">
+<div>
 <div class="eyebrow">SETS COMPLETED</div>
-<div class="stat">${completed} / ${total}</div>
-<p class="muted">Rest about 60–90 seconds between sets. No timer.</p>
+<div class="stat">${done} / ${total}</div>
 </div>
+<button class="btn outline small" onclick="pauseWorkout()">
+Save & exit
+</button>
+</div>
+<p class="muted">
+Rest approximately 60–90 seconds as needed.
+</p>
+</div>
+
+${w.ex.map((x,i)=>`
 <div class="card">
-${x.ex.map((e,i)=>`
-<div class="exercise">
-<h3>${i+1}. ${esc(e[0])}</h3>
-<p class="muted">${e[3]==="pair"?"Weight per dumbbell":e[3]==="one"?"One dumbbell":"Bodyweight"}</p>
+<div class="eyebrow">EXERCISE ${i+1} OF ${w.ex.length}</div>
+<h2>${esc(x[0])}</h2>
+
+${media(x)}
+
+<p class="hint">${esc(x[4])}</p>
+
+<p class="muted">
+${x[3]==="pair"
+?"Dumbbell weight shown per hand":
+x[3]==="one"?"Use one dumbbell":
+"Bodyweight or time-based movement"}
+</p>
+
 ${session.sets[i].map((s,j)=>`
 <div class="set">
-<span>${j+1}</span>
-<label>Reps / time<input type="number" min="0" max="999" value="${s.reps}" onchange="edit(${i},${j},'reps',this.value)"></label>
-<label>Weight lb<input type="number" min="0" max="100" value="${s.weight}" onchange="edit(${i},${j},'weight',this.value)"></label>
-<button class="${s.done?"done":""}" onclick="mark(${i},${j})">${s.done?"✓":"Done"}</button>
+<b>${j+1}</b>
+<label>
+${/minutes|seconds/i.test(x[0])?"Time":"Reps"}
+<input type="number" min="0" max="999"
+value="${s.reps}"
+onchange="editSet(${i},${j},'reps',this.value)">
+</label>
+<label>
+Weight lb
+<input type="number" min="0" max="100"
+value="${s.weight}"
+${x[3]==="none"?"disabled":""}
+onchange="editSet(${i},${j},'weight',this.value)">
+</label>
+<button class="${s.done?"done":""}"
+onclick="completeSet(${i},${j})">
+${s.done?"✓":"Done"}
+</button>
 </div>`).join("")}
-<p class="muted">How did the final set feel?</p>
-<select onchange="effort(${i},this.value)">
-<option value="">Choose effort</option>
-${[["easy","Easy · 4+ reps left"],["right","Just right · 2–3 reps left"],["hard","Very hard · barely finished"],["pain","Pain or discomfort"]].map(o=>`<option value="${o[0]}" ${session.efforts[i]===o[0]?"selected":""}>${o[1]}</option>`).join("")}
+
+<p class="muted">How did your final set feel?</p>
+<select onchange="setEffort(${i},this.value)">
+<option value="">Optional feedback</option>
+${[
+["easy","Easy — 4+ reps left"],
+["right","Just right — 2–3 reps left"],
+["hard","Very hard"],
+["pain","Pain or discomfort"]
+].map(([v,label])=>`
+<option value="${v}"
+${session.efforts[i]===v?"selected":""}>
+${label}
+</option>`).join("")}
 </select>
 </div>`).join("")}
-<button class="btn wide" onclick="finish()">Finish workout ✓</button>
-</div>
-<button class="btn outline" onclick="exitWorkout()">Save & exit</button>`;
+
+<button class="btn wide" onclick="finishWorkout()">
+Finish workout ✓
+</button>`;
 }
 }
 
-function setReady(k,n){ready[k]=n;render()}
-
-/* FIX: Check the actual equipment checkboxes. */
-function checkReady(){
-const boxes=Array.from(document.querySelectorAll("#equipment-list .gear-check"));
-const count=boxes.filter(b=>b.checked).length;
-const start=$("start");
-const status=$("gear-status");
-if(start)start.disabled=boxes.length===0||count!==boxes.length;
-if(status)status.textContent=count+" of "+boxes.length+" items ready";
+function startWorkout(){
+if(db.draft){
+if(!confirm(
+"You have an unfinished workout. Replace it with a new session?"
+))return;
 }
 
-function launch(){
-const boxes=Array.from(document.querySelectorAll("#equipment-list .gear-check"));
-if(!boxes.length||!boxes.every(b=>b.checked)){
-alert("Please check every equipment item first.");
-return;
-}
 session={
 day,
 date:new Date().toISOString(),
-readiness:{...ready},
-sets:plan[day].ex.map((x,i)=>x[1].map((r,j)=>({reps:r,weight:weights(i)[j],done:false}))),
+sets:plan[day].ex.map((x,i)=>
+x[1].map((reps,j)=>({
+reps,
+weight:getWeights(day,i)[j],
+done:false
+}))),
 efforts:{}
 };
+
 db.draft=session;
 save();
 stage="work";
 render();
 }
 
-function edit(i,j,k,v){
-const n=Number(v);
-if(!Number.isFinite(n)||n<0||n>999)return;
-session.sets[i][j][k]=n;
-db.draft=session;
-save();
-}
-function mark(i,j){
-session.sets[i][j].done=!session.sets[i][j].done;
-db.draft=session;
-save();
-render();
-}
-function effort(i,v){
-session.efforts[i]=v;
-db.draft=session;
-save();
-}
-function exitWorkout(){
-db.draft=session;
-save();
-session=null;
-stage="home";
-render();
-}
 function resume(){
 if(!db.draft)return;
+
 session=db.draft;
 day=session.day;
 session.efforts??={};
@@ -378,94 +588,174 @@ stage="work";
 tab("today");
 render();
 }
-function finish(){
-const all=session.sets.flat();
-const done=all.filter(s=>s.done).length;
-if(!done){alert("Complete at least one set before finishing.");return}
+
+function editSet(i,j,field,value){
+const n=Number(value);
+if(!Number.isFinite(n)||n<0||n>999)return;
+
+session.sets[i][j][field]=n;
+db.draft=session;
+save();
+}
+
+function completeSet(i,j){
+session.sets[i][j].done=!session.sets[i][j].done;
+db.draft=session;
+save();
+render();
+}
+
+function setEffort(i,value){
+session.efforts[i]=value;
+db.draft=session;
+save();
+}
+
+function pauseWorkout(){
+db.draft=session;
+save();
+session=null;
+stage="home";
+render();
+}
+
+function finishWorkout(){
+const sets=session.sets.flat();
+const completed=sets.filter(s=>s.done).length;
+
+if(!completed){
+alert("Mark at least one set complete first.");
+return;
+}
+
 if(!confirm("Finish and save this workout?"))return;
-const x=plan[session.day];
-const details=x.ex.map((e,i)=>({
-name:e[0],
+
+const d=session.day;
+
+db.history.push({
+id:"v4-"+Date.now(),
+date:new Date().toISOString(),
+name:plan[d].name,
+completed,
+total:sets.length,
+details:plan[d].ex.map((x,i)=>({
+name:x[0],
 sets:session.sets[i].map(s=>({...s})),
 effort:session.efforts[i]||""
-}));
-db.history.push({
-id:"w-"+Date.now(),
-date:new Date().toISOString(),
-name:x.name,
-completed:done,
-total:all.length,
-details,
-readiness:session.readiness
+}))
 });
-Object.keys(session.efforts).forEach(i=>{
-if(session.efforts[i])db.feedback[session.day+"-"+i]=session.efforts[i];
+
+session.sets.forEach((exerciseSets,i)=>{
+const finished=exerciseSets.filter(s=>s.done);
+
+if(finished.length===exerciseSets.length){
+db.weights[key(d,i)]=exerciseSets.map(s=>s.weight);
+}
+
+if(session.efforts[i]){
+db.feedback[key(d,i)]=session.efforts[i];
+}
 });
+
 db.draft=null;
 save();
+
 session=null;
 stage="home";
 render();
 tab("progress");
 }
+
 function progress(){
 $("progress").innerHTML=`
 <h1>Your progress.</h1>
+
 <div class="card hero">
 <div class="eyebrow">WORKOUTS RECORDED</div>
 <div class="stat">${db.history.length}</div>
 </div>
+
 <div class="card">
-<h2>Workout history</h2>
-${db.history.length?db.history.slice().reverse().map(x=>`
+<h3>Workout history</h3>
+
+${db.history.length?
+db.history.slice().reverse().map((x,i)=>`
 <div class="day">
 <div class="row">
 <div>
 <b>${esc(x.name||"Workout")}</b>
-<div class="muted">${x.date?new Date(x.date).toLocaleDateString():""} · ${x.completed??0}/${x.total??0} ${x.legacy?"exercises":"sets"}</div>
+<div class="muted">
+${x.date?new Date(x.date).toLocaleDateString():""}
+· ${x.completed??0}/${x.total??0}
+${x.legacy?"exercises":"sets"}
 </div>
-<button class="btn outline small" onclick='removeWorkout(${JSON.stringify(String(x.id))})'>Delete</button>
 </div>
+<button class="btn outline small"
+onclick="deleteWorkout(${JSON.stringify(String(x.id)).replace(/"/g,"&quot;")})">
+Delete
+</button>
+</div>
+
 ${Array.isArray(x.details)?`
-<details><summary class="muted">View sets and weights</summary>
+<details>
+<summary class="muted">View completed sets</summary>
 ${x.details.map(e=>`
-<p class="muted"><b>${esc(e.name)}</b><br>
-${e.sets.map((s,j)=>`Set ${j+1}: ${s.reps} reps · ${s.weight} lb ${s.done?"✓":""}`).join("<br>")}
-${e.effort?"<br>Effort: "+esc(e.effort):""}
+<p class="muted">
+<b>${esc(e.name)}</b>
+${e.sets.map((s,j)=>`
+<br>Set ${j+1}: ${s.reps} reps · ${s.weight} lb
+${s.done?"✓":"—"}
+`).join("")}
 </p>`).join("")}
 </details>`:""}
-</div>`).join(""):'<p class="muted">No completed workouts yet.</p>'}
+</div>`).join(""):
+'<p class="muted">No workouts recorded yet.</p>'}
 </div>
-<p class="muted">History is stored locally on this device. Clearing website data can erase it.</p>`;
+
+<p class="muted">
+Your workout history is stored locally in this browser.
+Clearing website data may erase it.
+</p>`;
 }
-function removeWorkout(id){
-if(!confirm("Permanently delete this workout?"))return;
+
+function deleteWorkout(id){
+if(!confirm("Delete this workout permanently?"))return;
+
 db.history=db.history.filter(x=>String(x.id)!==id);
 save();
 progress();
 }
+
 function coach(){
 $("coach").innerHTML=`
 <h1>Your coach.</h1>
 <div class="card hero">
-<h2>Progress at your pace.</h2>
-<p>Start conservatively and rebuild toward your previous strength.</p>
+<h3>Strength, gradually.</h3>
+<p>
+Build consistency first. Increase dumbbell weights
+only when the current sets feel controlled and
+you can maintain good technique.
+</p>
 </div>
 <div class="card">
-<h2>Progression guidelines</h2>
-<p><b>Easy:</b> Consider a small increase after consistently completing every set with good form.</p>
-<p><b>Just right:</b> Repeat the weight until comfortable.</p>
-<p><b>Very hard:</b> Maintain or reduce the weight.</p>
-<p><b>Pain:</b> Stop the painful movement.</p>
-<p class="muted">Effort feedback is saved, but automatic weight adjustments are not yet implemented.</p>
+<h3>Your progression</h3>
+<p class="muted">
+Your actual weights and repetitions are saved.
+Completed exercise weights carry into future sessions.
+Automatic AI progression is not enabled yet.
+</p>
 </div>`;
 }
+
 $("nutrition").innerHTML=`
-<h1>Nourish yourself.</h1>
+<h1>Nutrition.</h1>
 <div class="card">
-<h2>Nutrition studio</h2>
-<p class="muted">Meal planning and nutrition tracking are planned for a future version.</p>
+<h3>Coming later</h3>
+<p class="muted">
+Nutrition coaching will be added in a future version.
+</p>
 </div>`;
+
 render();
 </script>
 </body>
