@@ -6,311 +6,582 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F8F5EF">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Forme AI</title>
+<title>Forme AI | Personal Strength Studio</title>
 <style>
 :root{
 --cream:#f8f5ef;
---white:#fffefa;
---sage:#778d77;
---light:#e9eee6;
---dark:#27372d;
---muted:#778176;
---line:#e1e5dc;
+--paper:#fffdfa;
+--green:#243629;
+--sage:#778e77;
+--pale:#eef0e8;
+--border:#dcded2;
+--muted:#737e73;
 }
 *{box-sizing:border-box}
 body{
-margin:0;background:var(--cream);color:var(--dark);
-font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-font-size:15px
+margin:0;
+background:var(--cream);
+color:var(--green);
+font-family:-apple-system,BlinkMacSystemFont,
+"Helvetica Neue",sans-serif;
+-webkit-font-smoothing:antialiased;
 }
-header,main{max-width:620px;margin:auto}
-header{padding:23px 20px 10px}
-main{padding:10px 17px 115px}
-.logo{font:35px Georgia,serif;letter-spacing:-1px}
+header,main{
+max-width:1000px;
+margin:auto;
+}
+header{
+padding:25px 22px 10px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+.logo{
+font:normal 37px Georgia,serif;
+letter-spacing:-1px;
+}
 .logo span{color:var(--sage)}
-.eyebrow{
-font-size:11px;letter-spacing:1.5px;
-font-weight:700;color:var(--sage)
+.header-right{
+font:18px Georgia,serif;
 }
-h1{font:normal 31px Georgia,serif;margin:13px 0}
-h2{font:normal 24px Georgia,serif;margin:8px 0}
-h3{font-size:17px;margin:0 0 8px}
+main{
+padding:15px 18px 115px;
+}
+h1,h2,h3{
+font-family:Georgia,serif;
+font-weight:normal;
+}
+h1{
+font-size:clamp(30px,5vw,55px);
+line-height:1.1;
+margin:12px 0;
+}
+h2{font-size:26px;margin:0 0 10px}
+h3{font-size:21px;margin:0}
 p{line-height:1.5}
-.muted{font-size:13px;color:var(--muted)}
-.card{
-background:var(--white);
-border:1px solid var(--line);
-border-radius:20px;
-padding:17px;
-margin-bottom:15px;
-overflow:hidden
-}
-.hero{background:var(--light)}
-.btn{
-border:0;border-radius:12px;
-padding:14px 17px;
-background:var(--dark);color:white;
-font:600 14px -apple-system,sans-serif;
-min-height:46px;
-cursor:pointer
-}
-.btn:disabled{opacity:.45}
-.wide{width:100%}
-.outline{
-background:var(--white);
-color:var(--dark);
-border:1px solid var(--line)
-}
-.small{padding:8px 11px;min-height:34px;font-size:12px}
-.row{
-display:flex;align-items:center;
-justify-content:space-between;gap:10px
-}
-.day{
-border-bottom:1px solid var(--line);
-padding:13px 0
-}
-.day:last-child{border:0}
-.day button{
-background:none;border:0;
-font:inherit;color:inherit;
-text-align:left;flex:1
-}
-.active{color:var(--sage);font-weight:700}
-.media{
-height:190px;
-background:linear-gradient(135deg,#f2ede4,#e3e9dd);
-border-radius:15px;
-margin:13px 0;
-overflow:hidden;
-display:flex;align-items:center;
-justify-content:center
-}
-.media img{
-width:100%;height:100%;
-object-fit:contain
-}
-.media-fallback{
-text-align:center;
-padding:20px;color:var(--sage)
-}
-.media-fallback strong{
-display:block;font:23px Georgia,serif;
-margin-bottom:8px
-}
-.media-fallback span{font-size:12px}
-.set{
-display:grid;
-grid-template-columns:29px 1fr 1fr 52px;
-gap:8px;
-align-items:end;
-margin:12px 0
-}
-.set label{font-size:11px;color:var(--muted)}
-.set input{
-display:block;
-width:100%;min-width:0;
-border:1px solid var(--line);
-border-radius:10px;
-padding:11px 7px;
-font:inherit;
-background:white
-}
-.set button{
-border:1px solid var(--line);
-background:var(--light);
-border-radius:10px;
-min-height:43px;
-font-weight:600
-}
-.set button.done{
-background:var(--sage);
-color:white
-}
-.hint{
-background:var(--light);
-border-radius:11px;
-padding:11px 13px;
+.muted{
+color:var(--muted);
 font-size:13px;
-line-height:1.5
+}
+.eyebrow{
+font-size:11px;
+letter-spacing:1.6px;
+font-weight:700;
+color:var(--sage);
+}
+.hero{
+text-align:center;
+padding:20px 0 23px;
+}
+.meta{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:18px;
+font-size:14px;
+margin:15px 0;
+}
+.equipment{
+background:var(--pale);
+border:1px solid var(--border);
+border-radius:16px;
+padding:15px 18px;
+margin:10px 0 20px;
+}
+.equipment-items{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:10px;
+}
+.chip{
+background:var(--paper);
+border:1px solid var(--border);
+border-radius:30px;
+padding:9px 13px;
+font-size:13px;
+font-weight:600;
+}
+.card{
+background:var(--paper);
+border:1px solid var(--border);
+border-radius:19px;
+margin-bottom:13px;
+overflow:hidden;
+}
+.exercise{
+display:grid;
+grid-template-columns:180px minmax(0,1fr);
+align-items:stretch;
+min-height:150px;
+}
+.visual{
+background:linear-gradient(140deg,#eae6dc,#dfe8dc);
+min-height:145px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+position:relative;
+}
+.visual img{
+display:block;
+width:100%;
+height:100%;
+object-fit:cover;
+position:absolute;
+inset:0;
+}
+.fallback{
+text-align:center;
+padding:12px;
+color:var(--green);
+}
+.fallback-icon{
+font-size:32px;
+margin-bottom:7px;
+}
+.fallback small{
+display:block;
+font-size:11px;
+line-height:1.4;
+color:var(--muted);
+}
+.exercise-body{
+padding:15px 17px;
+min-width:0;
+}
+.exercise-title{
+font:normal 25px Georgia,serif;
+line-height:1.12;
+margin-bottom:7px;
+}
+.cue{
+font-size:12px;
+color:var(--muted);
+margin:0 0 12px;
+}
+.sets{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+.set-box{
+flex:1 1 72px;
+min-width:72px;
+background:var(--pale);
+border:1px solid #cbd1c2;
+border-radius:13px;
+padding:10px 5px;
+text-align:center;
+color:var(--green);
+cursor:pointer;
+font:inherit;
+}
+.set-box strong{
+display:block;
+font-size:15px;
+margin:4px 0;
+}
+.set-box small{
+font-size:11px;
+color:var(--muted);
+}
+.set-box.done{
+background:var(--sage);
+color:white;
+border-color:var(--sage);
+}
+.set-box.done small{color:white}
+.controls{
+display:flex;
+gap:9px;
+flex-wrap:wrap;
+margin-top:12px;
+}
+.btn{
+background:var(--green);
+color:white;
+border:0;
+border-radius:12px;
+padding:13px 17px;
+font:600 14px -apple-system,sans-serif;
+min-height:44px;
+cursor:pointer;
+}
+.btn.secondary{
+background:var(--paper);
+color:var(--green);
+border:1px solid var(--border);
+}
+.btn.small{
+padding:8px 11px;
+font-size:12px;
+min-height:35px;
+}
+.btn.wide{width:100%}
+.session-progress{
+background:var(--pale);
+padding:14px;
+border-radius:13px;
+margin-bottom:15px;
+}
+.progress-track{
+height:7px;
+border-radius:10px;
+background:#d6ded2;
+overflow:hidden;
+margin-top:9px;
+}
+.progress-fill{
+height:100%;
+background:var(--sage);
+transition:width .2s;
+}
+.week{
+padding:15px;
+}
+.week-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid var(--border);
+padding:12px 0;
+gap:12px;
+}
+.week-row:last-child{border:0}
+.week-row button{
+border:0;
+background:none;
+text-align:left;
+font:inherit;
+color:var(--green);
+flex:1;
+}
+.week-row.selected button{
+font-weight:700;
+color:#55775a;
+}
+.detail{
+padding:15px;
+}
+.detail summary{
+cursor:pointer;
+font-size:13px;
+color:var(--sage);
+}
+.edit-row{
+display:grid;
+grid-template-columns:50px 1fr 1fr;
+gap:9px;
+align-items:center;
+padding:8px 0;
+}
+.edit-row input{
+min-width:0;
+width:100%;
+padding:10px 6px;
+border-radius:9px;
+border:1px solid var(--border);
+font:inherit;
+background:white;
+}
+.edit-row label{
+font-size:11px;
+color:var(--muted);
 }
 select{
 width:100%;
-border:1px solid var(--line);
+border:1px solid var(--border);
 border-radius:10px;
+padding:11px;
+font:inherit;
 background:white;
-padding:12px;
-font:inherit
+color:var(--green);
 }
-.stat{font:34px Georgia,serif}
-.hidden{display:none}
+.section{
+margin-top:22px;
+}
+.hidden{display:none!important}
 nav{
-position:fixed;bottom:0;left:0;right:0;
+position:fixed;
+bottom:0;
+left:0;
+right:0;
 display:flex;
-background:var(--white);
-border-top:1px solid var(--line);
-padding:9px 8px calc(9px + env(safe-area-inset-bottom))
+background:var(--paper);
+border-top:1px solid var(--border);
+padding:8px 5px calc(9px + env(safe-area-inset-bottom));
+z-index:20;
 }
 nav button{
-flex:1;border:0;background:none;
-padding:11px 0;color:var(--muted);
-font-size:12px
+flex:1;
+border:0;
+background:none;
+color:var(--muted);
+font-size:12px;
+padding:11px 0;
 }
-nav button.on{color:var(--sage);font-weight:700}
+nav button.on{
+color:var(--sage);
+font-weight:700;
+}
+@media(max-width:550px){
+header{padding:19px 18px 5px}
+.logo{font-size:32px}
+.header-right{font-size:14px}
+main{padding:8px 12px 115px}
+.hero{padding:15px 3px 18px}
+.meta{gap:11px;font-size:12px}
+.exercise{
+grid-template-columns:110px minmax(0,1fr);
+min-height:160px;
+}
+.visual{min-height:160px}
+.exercise-body{padding:12px 10px}
+.exercise-title{font-size:19px}
+.cue{font-size:11px}
+.sets{gap:5px}
+.set-box{
+min-width:57px;
+flex:1 1 57px;
+padding:9px 2px;
+border-radius:10px;
+}
+.set-box strong{font-size:12px}
+.set-box small{font-size:10px}
+.fallback-icon{font-size:25px}
+}
 </style>
 </head>
 <body>
 
 <header>
 <div class="logo">forme<span>.</span> ai</div>
-<div class="eyebrow">YOUR PERSONAL STRENGTH STUDIO · V0.4</div>
+<div class="header-right">Today's Workout</div>
 </header>
 
 <main>
 <section id="today"></section>
-<section id="coach" class="hidden"></section>
-<section id="nutrition" class="hidden"></section>
 <section id="progress" class="hidden"></section>
+<section id="coach" class="hidden"></section>
 </main>
 
 <nav>
-<button class="on" onclick="tab('today')">Today</button>
-<button onclick="tab('coach')">Coach</button>
-<button onclick="tab('nutrition')">Nutrition</button>
-<button onclick="tab('progress')">Progress</button>
+<button class="on" onclick="showTab('today')">Today</button>
+<button onclick="showTab('progress')">Progress</button>
+<button onclick="showTab('coach')">Coach</button>
 </nav>
 
 <script>
 "use strict";
 
 /*
-Each exercise:
-name, reps per set, weights per set,
-equipment, coaching cue, GIF filename.
+FORME AI V0.5
 
-For "pair", weight is PER DUMBBELL.
-For "one", weight is for one dumbbell.
+Each exercise:
+name, reps, weights, equipment,
+movement cue, GIF filename, type
+
+Equipment:
+pair = two dumbbells, weight per hand
+one = one dumbbell
+none = no dumbbell
+
+Types:
+reps, minutes, seconds
+
+The GIFs are separate assets in /media.
 */
 
-const plan=[
+const workouts=[
 {
-name:"Full Body Strength A",minutes:40,
+name:"Full Body Strength A",
+minutes:40,
 ex:[
-["Goblet squat",[15,12,10],[10,15,15],"one",
-"Keep chest tall and lower with control.",
-"goblet-squat.gif"],
-["Dumbbell floor press",[12,10,8],[5,8,10],"pair",
-"Keep elbows slightly tucked.",
-"floor-press.gif"],
-["Bent-over dumbbell row",[15,12,10],[8,10,10],"pair",
-"Hinge at hips and pull elbows toward ribs.",
-"bent-over-row.gif"],
-["Dumbbell Romanian deadlift",[15,12,10],[10,15,15],"pair",
-"Push hips back; keep weights near legs.",
-"romanian-deadlift.gif"],
-["Dead bug (each side)",[8,8],[0,0],"none",
-"Keep your trunk steady and move slowly.",
-"dead-bug.gif"]
+["Goblet Squat",
+[15,12,10],[10,15,15],"one",
+"Chest tall · Sit between hips",
+"goblet-squat.gif","reps"],
+["Dumbbell Floor Press",
+[12,10,8],[5,8,10],"pair",
+"Elbows slightly tucked",
+"floor-press.gif","reps"],
+["Bent-over Dumbbell Row",
+[15,12,10],[8,10,10],"pair",
+"Hinge at hips · Row toward ribs",
+"bent-over-row.gif","reps"],
+["Dumbbell Romanian Deadlift",
+[15,12,10],[10,15,15],"pair",
+"Push hips back · Keep back neutral",
+"romanian-deadlift.gif","reps"],
+["Dead Bug (per side)",
+[8,8],[0,0],"none",
+"Slow and controlled",
+"dead-bug.gif","reps"]
 ]},
 {
-name:"Indoor Walk + Core",minutes:30,
+name:"Indoor Walk + Core",
+minutes:30,
 ex:[
-["Indoor walking (minutes)",[20],[0],"none",
-"Walk at a comfortable pace.","indoor-walk.gif"],
-["Dead bug (each side)",[8,8],[0,0],"none",
-"Control your lower back.","dead-bug.gif"],
-["Bird dog (each side)",[8,8],[0,0],"none",
-"Keep hips level.","bird-dog.gif"]
+["Indoor Walking",
+[20],[0],"none",
+"Comfortable walking pace",
+"indoor-walk.gif","minutes"],
+["Dead Bug (per side)",
+[8,8],[0,0],"none",
+"Keep your trunk steady",
+"dead-bug.gif","reps"],
+["Bird Dog (per side)",
+[8,8],[0,0],"none",
+"Keep hips level",
+"bird-dog.gif","reps"]
 ]},
 {
-name:"Full Body Strength B",minutes:40,
+name:"Full Body Strength B",
+minutes:40,
 ex:[
-["Reverse lunge (each leg)",[12,10,8],[0,5,8],"pair",
-"Step back and keep your balance.","reverse-lunge.gif"],
-["Standing shoulder press",[15,12,10],[5,8,8],"pair",
-"Press overhead without arching your back.",
-"shoulder-press.gif"],
-["Bent-over dumbbell row",[15,12,10],[8,10,10],"pair",
-"Keep your torso stable.","bent-over-row.gif"],
-["Floor glute bridge",[15,12,10],[0,0,0],"none",
-"Lift hips by squeezing your glutes.",
-"glute-bridge.gif"],
-["Side plank (seconds each side)",[20,25],[0,0],"none",
-"Keep your body aligned.","side-plank.gif"]
+["Reverse Lunge (per leg)",
+[12,10,8],[0,5,8],"pair",
+"Step back with control",
+"reverse-lunge.gif","reps"],
+["Standing Shoulder Press",
+[15,12,10],[5,8,8],"pair",
+"Keep ribs down",
+"shoulder-press.gif","reps"],
+["Bent-over Dumbbell Row",
+[15,12,10],[8,10,10],"pair",
+"Stable torso",
+"bent-over-row.gif","reps"],
+["Floor Glute Bridge",
+[15,12,10],[0,0,0],"none",
+"Squeeze glutes at the top",
+"glute-bridge.gif","reps"],
+["Side Plank (per side)",
+[20,25],[0,0],"none",
+"Keep body aligned",
+"side-plank.gif","seconds"]
 ]},
 {
-name:"Recovery + Mobility",minutes:25,
+name:"Recovery + Mobility",
+minutes:25,
 ex:[
-["Indoor walking (minutes)",[10],[0],"none",
-"Keep the pace easy.","indoor-walk.gif"],
-["Cat-cow",[8,8],[0,0],"none",
-"Move gently through your spine.","cat-cow.gif"],
-["Hip mobility (minutes)",[5],[0],"none",
-"Use a comfortable range of motion.","hip-mobility.gif"],
-["Gentle stretching (minutes)",[5],[0],"none",
-"Breathe and avoid forcing a stretch.","stretching.gif"]
+["Indoor Walking",
+[10],[0],"none",
+"Easy walking pace",
+"indoor-walk.gif","minutes"],
+["Cat-Cow",
+[8,8],[0,0],"none",
+"Gentle spinal movement",
+"cat-cow.gif","reps"],
+["Hip Mobility",
+[5],[0],"none",
+"Comfortable range of motion",
+"hip-mobility.gif","minutes"],
+["Gentle Stretching",
+[5],[0],"none",
+"Breathe and relax",
+"stretching.gif","minutes"]
 ]},
 {
-name:"Full Body Circuit",minutes:40,
+name:"Full Body Circuit",
+minutes:40,
 ex:[
-["Squat to press",[12,10,8],[5,5,8],"pair",
-"Keep the movement smooth and controlled.",
-"squat-to-press.gif"],
-["Alternating reverse lunge (total)",[15,12,10],[0,5,5],"pair",
-"Step back carefully.","reverse-lunge.gif"],
-["Dumbbell row (total)",[15,12,10],[8,10,10],"pair",
-"Keep your back stable.","bent-over-row.gif"],
-["Bicycle crunch (total)",[20,20],[0,0],"none",
-"Rotate gently without pulling your neck.",
-"bicycle-crunch.gif"],
-["Wall sit (seconds)",[30,40],[0,0],"none",
-"Keep feet planted.","wall-sit.gif"]
+["Squat to Press",
+[12,10,8],[5,5,8],"pair",
+"Smooth, controlled movement",
+"squat-to-press.gif","reps"],
+["Alternating Reverse Lunge",
+[15,12,10],[0,5,5],"pair",
+"Reps total · Alternate legs",
+"reverse-lunge.gif","reps"],
+["Dumbbell Row",
+[15,12,10],[8,10,10],"pair",
+"Reps total · Controlled row",
+"bent-over-row.gif","reps"],
+["Bicycle Crunch",
+[20,20],[0,0],"none",
+"Reps total · No neck pulling",
+"bicycle-crunch.gif","reps"],
+["Wall Sit",
+[30,40],[0,0],"none",
+"Keep feet planted",
+"wall-sit.gif","seconds"]
 ]},
 {
-name:"Glutes, Arms + Core",minutes:35,
+name:"Glutes, Arms + Core",
+minutes:35,
 ex:[
-["Dumbbell sumo squat",[15,12,10],[10,15,15],"one",
-"Keep knees aligned with toes.","sumo-squat.gif"],
-["Floor glute bridge",[15,12,10],[0,0,0],"none",
-"Push through your heels.","glute-bridge.gif"],
-["Dumbbell biceps curl",[15,12,10],[5,8,8],"pair",
-"Keep elbows close to your sides.","biceps-curl.gif"],
-["Dumbbell lateral raise",[12,10,8],[5,5,5],"pair",
-"Lift slowly without shrugging.",
-"lateral-raise.gif"],
-["Bird dog (each side)",[8,8],[0,0],"none",
-"Keep your hips still.","bird-dog.gif"]
+["Dumbbell Sumo Squat",
+[15,12,10],[10,15,15],"one",
+"Knees track over toes",
+"sumo-squat.gif","reps"],
+["Floor Glute Bridge",
+[15,12,10],[0,0,0],"none",
+"Drive through heels",
+"glute-bridge.gif","reps"],
+["Dumbbell Biceps Curl",
+[15,12,10],[5,8,8],"pair",
+"Elbows near sides",
+"biceps-curl.gif","reps"],
+["Dumbbell Lateral Raise",
+[12,10,8],[5,5,5],"pair",
+"Lift without shrugging",
+"lateral-raise.gif","reps"],
+["Bird Dog (per side)",
+[8,8],[0,0],"none",
+"Keep your hips steady",
+"bird-dog.gif","reps"]
 ]},
 {
-name:"Easy Walk + Stretch",minutes:25,
+name:"Easy Walk + Stretch",
+minutes:25,
 ex:[
-["Indoor walking (minutes)",[20],[0],"none",
-"Keep the pace relaxed.","indoor-walk.gif"],
-["Gentle stretching (minutes)",[5],[0],"none",
-"Stretch comfortably.","stretching.gif"]
+["Indoor Walking",
+[20],[0],"none",
+"Relaxed walking pace",
+"indoor-walk.gif","minutes"],
+["Gentle Stretching",
+[5],[0],"none",
+"Comfortable, gentle stretching",
+"stretching.gif","minutes"]
 ]}
 ];
 
-const days=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const days=[
+"Monday","Tuesday","Wednesday",
+"Thursday","Friday","Saturday","Sunday"
+];
+
 const $=id=>document.getElementById(id);
 
-function esc(s){
-return String(s).replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",
-'"':"&quot;","'":"&#39;"
+function escapeHTML(value){
+return String(value).replace(/[&<>"']/g,c=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
 }[c]));
 }
 
-function read(key,fallback){
+function load(key,fallback){
 try{
 return JSON.parse(localStorage.getItem(key))??fallback;
-}catch{return fallback}
+}catch{
+return fallback;
+}
 }
 
-let db=read("forme_v04",null);
+let db=load("forme_v05",null);
 
 if(!db||typeof db!=="object"){
-db={history:[],weights:{},feedback:{},draft:null};
+db={
+history:[],
+weights:{},
+feedback:{},
+draft:null
+};
 }
 
 db.history??=[];
@@ -320,34 +591,45 @@ db.draft??=null;
 
 function save(){
 try{
-localStorage.setItem("forme_v04",JSON.stringify(db));
+localStorage.setItem("forme_v05",JSON.stringify(db));
+return true;
 }catch{
-alert("Unable to save your workout data.");
+alert("Unable to save workout data.");
+return false;
 }
 }
 
-/* Preserve completed workouts from older versions. */
+/* Import earlier history once. */
 if(!db.migrated){
-const v3=read("forme_v03",null);
-const v2=read("forme_v02",null);
-const v1=read("forme_logs",[]);
+const v4=load("forme_v04",null);
+const v3=load("forme_v03",null);
+const v2=load("forme_v02",null);
+const v1=load("forme_logs",[]);
 
-const source=
-v3&&Array.isArray(v3.history)?v3:
-v2&&Array.isArray(v2.history)?v2:null;
+const source=[v4,v3,v2].find(x=>
+x&&Array.isArray(x.history)
+);
 
 if(source){
 db.history=source.history.map((x,i)=>({
-...x,id:"import-"+i+"-"+String(x.id??"")
+...x,
+id:"import-"+i+"-"+String(x.id??"")
 }));
 
-if(source===v3){
-db.weights=source.weights||{};
-db.feedback=source.feedback||{};
+if(source.weights&&
+typeof source.weights==="object"){
+db.weights=source.weights;
+}
+
+if(source.feedback&&
+typeof source.feedback==="object"){
+db.feedback=source.feedback;
 }
 }else if(Array.isArray(v1)){
 db.history=v1.map((x,i)=>({
-...x,id:"import-v1-"+i,legacy:true
+...x,
+id:"import-v1-"+i,
+legacy:true
 }));
 }
 
@@ -355,185 +637,322 @@ db.migrated=true;
 save();
 }
 
-let day=(new Date().getDay()+6)%7;
-let stage="home";
-let session=null;
+let selectedDay=(new Date().getDay()+6)%7;
+let activeSession=null;
 
-function tab(name){
-const names=["today","coach","nutrition","progress"];
-
-names.forEach(x=>{
-$(x).classList.toggle("hidden",x!==name);
-});
-
-document.querySelectorAll("nav button").forEach((b,i)=>{
-b.classList.toggle("on",names[i]===name);
-});
-
-if(name==="progress")progress();
-if(name==="coach")coach();
-}
-
-function choose(i){
-day=i;
-stage="home";
-render();
-}
-
-function key(d,i){
+function weightKey(d,i){
 return d+"-"+i;
 }
 
 function getWeights(d,i){
-const x=plan[d].ex[i];
-const stored=db.weights[key(d,i)];
+const x=workouts[d].ex[i];
+const saved=db.weights[weightKey(d,i)];
 
-return Array.isArray(stored)&&
-stored.length===x[1].length
-?stored.slice():x[2].slice();
+if(Array.isArray(saved)&&
+saved.length===x[1].length){
+return saved.slice();
+}
+return x[2].slice();
 }
 
-/*
-Videos are automatic.
-Put GIFs inside a GitHub folder named media.
-Missing GIFs display a neutral fallback.
-*/
-function media(x){
+function equipment(d,sets){
+const needed=new Set();
+let mat=false;
+
+workouts[d].ex.forEach((x,i)=>{
+const amounts=sets?
+sets[i].map(s=>s.weight):
+getWeights(d,i);
+
+if(x[3]!=="none"){
+amounts.forEach(n=>{
+if(Number(n)>0)needed.add(Number(n));
+});
+}
+
+if(/floor|dead bug|bird dog|plank|stretch|mobility|cat-cow|crunch|bridge/i.test(x[0])){
+mat=true;
+}
+});
+
+const items=[...needed]
+.sort((a,b)=>a-b)
+.map(n=>n+" lb dumbbells");
+
+if(mat)items.push("Yoga mat");
+items.push("Water bottle");
+
+return items;
+}
+
+function equipmentHTML(d,sets){
 return `
-<div class="media">
+<div class="equipment">
+<div class="eyebrow">TODAY'S EQUIPMENT</div>
+<div class="equipment-items">
+${equipment(d,sets).map(x=>
+`<span class="chip">${escapeHTML(x)}</span>`
+).join("")}
+</div>
+<p class="muted" style="margin-bottom:0">
+Bring pairs of the listed dumbbell weights.
+For goblet and sumo squats, use one dumbbell.
+</p>
+</div>`;
+}
+
+function gifHTML(x){
+return `
+<div class="visual">
 <img
 src="media/${encodeURIComponent(x[5])}"
-alt="${esc(x[0])} demonstration"
+alt="${escapeHTML(x[0])} demonstration"
 loading="lazy"
 onerror="this.hidden=true;this.nextElementSibling.hidden=false">
-<div class="media-fallback" hidden>
-<strong>${esc(x[0])}</strong>
-<span>Movement demonstration</span>
+<div class="fallback" hidden>
+<div class="fallback-icon">◌</div>
+<strong>${escapeHTML(x[0])}</strong>
+<small>${escapeHTML(x[4])}</small>
 </div>
 </div>`;
 }
 
-function render(){
-const w=plan[day];
+function showTab(name){
+["today","progress","coach"].forEach(x=>{
+$(x).classList.toggle("hidden",x!==name);
+});
 
-if(stage==="home"){
+document.querySelectorAll("nav button").forEach((b,i)=>{
+b.classList.toggle("on",
+["today","progress","coach"][i]===name);
+});
+
+if(name==="progress")renderProgress();
+if(name==="coach")renderCoach();
+if(name==="today")renderToday();
+}
+
+function chooseDay(i){
+selectedDay=i;
+renderToday();
+window.scrollTo(0,0);
+}
+
+function setDescription(x,reps,weight){
+const unit=x[6]==="minutes"?"min":
+x[6]==="seconds"?"sec":"reps";
+
+return reps+" "+unit+
+(x[3]!=="none"?" · "+weight+" lb":"");
+}
+
+function renderToday(){
+const w=workouts[selectedDay];
+
+if(activeSession){
+renderSession();
+return;
+}
+
 $("today").innerHTML=`
-<div class="eyebrow">TODAY'S WORKOUT</div>
-<h1>Move with purpose.</h1>
+<div class="hero">
+<div class="eyebrow">
+${days[selectedDay].toUpperCase()} · YOUR WORKOUT
+</div>
+<h1>${escapeHTML(w.name)}</h1>
+<div class="meta">
+<span>◷ ~${w.minutes} minutes</span>
+<span>♧ ${w.ex.length} exercises</span>
+<span>⌂ Home studio</span>
+</div>
+</div>
 
 ${db.draft?`
-<div class="card hero">
+<div class="card detail">
 <h3>Workout in progress</h3>
 <p class="muted">
-${esc(plan[db.draft.day]?.name||"Saved session")}
+${escapeHTML(workouts[db.draft.day]?.name||"Saved workout")}
 </p>
-<button class="btn wide" onclick="resume()">
+<button class="btn wide" onclick="resumeWorkout()">
 Resume workout →
 </button>
 </div>`:""}
 
-<div class="card hero">
-<div class="eyebrow">${days[day]} · ${w.minutes} MINUTES</div>
-<h2>${esc(w.name)}</h2>
-<p class="muted">
-${w.ex.length} exercises · Dumbbells and bodyweight
-</p>
+${equipmentHTML(selectedDay)}
+
+<div class="controls" style="margin-bottom:20px">
 <button class="btn wide" onclick="startWorkout()">
-Start workout →
+Start Workout →
 </button>
 </div>
 
-<div class="card">
-<h3>Today's exercises</h3>
-${w.ex.map((x,i)=>`
-<div class="day">
-<b>${i+1}. ${esc(x[0])}</b>
-<div class="muted">
-${x[1].map((r,j)=>
-r+" × "+(x[3]==="none"
-?"bodyweight":getWeights(day,i)[j]+" lb")
-).join(" · ")}
+<div class="eyebrow" style="margin:15px 0">
+TODAY'S EXERCISES
 </div>
+
+${w.ex.map((x,i)=>`
+<div class="card exercise">
+${gifHTML(x)}
+<div class="exercise-body">
+<div class="exercise-title">
+${escapeHTML(x[0])}
+</div>
+<p class="cue">${escapeHTML(x[4])}</p>
+<div class="sets">
+${x[1].map((r,j)=>`
+<div class="set-box" style="cursor:default">
+<small>Set ${j+1}</small>
+<strong>${r} ${x[6]==="minutes"?"min":
+x[6]==="seconds"?"sec":"reps"}</strong>
+<small>${x[3]==="none"?"Bodyweight":
+getWeights(selectedDay,i)[j]+" lb"}</small>
 </div>`).join("")}
 </div>
+</div>
+</div>`).join("")}
 
-<div class="card">
-<h3>Your weekly plan</h3>
-${plan.map((x,i)=>`
-<div class="row day ${i===day?"active":""}">
-<button onclick="choose(${i})">
-<b>${days[i]}</b> · ${esc(x.name)}
+<div class="section card week">
+<h3>Your Weekly Plan</h3>
+${workouts.map((x,i)=>`
+<div class="week-row ${i===selectedDay?"selected":""}">
+<button onclick="chooseDay(${i})">
+${days[i]} · ${escapeHTML(x.name)}
 </button>
-<span class="muted">${x.minutes}m</span>
+<span class="muted">${x.minutes} min</span>
 </div>`).join("")}
 </div>`;
 }
 
-if(stage==="work"){
-const w=plan[session.day];
-const done=session.sets.flat().filter(s=>s.done).length;
-const total=session.sets.flat().length;
+function startWorkout(){
+if(db.draft){
+if(!confirm(
+"Replace your unfinished workout with a new session?"
+))return;
+}
+
+activeSession={
+day:selectedDay,
+date:new Date().toISOString(),
+sets:workouts[selectedDay].ex.map((x,i)=>
+x[1].map((reps,j)=>({
+reps,
+weight:getWeights(selectedDay,i)[j],
+done:false
+}))),
+efforts:{}
+};
+
+db.draft=activeSession;
+if(!save())return;
+renderSession();
+window.scrollTo(0,0);
+}
+
+function resumeWorkout(){
+if(!db.draft)return;
+
+const s=db.draft;
+
+if(!Number.isInteger(s.day)||
+!workouts[s.day]||
+!Array.isArray(s.sets)){
+alert("Saved workout could not be resumed.");
+return;
+}
+
+activeSession=s;
+activeSession.efforts??={};
+selectedDay=s.day;
+renderSession();
+window.scrollTo(0,0);
+}
+
+function renderSession(){
+const s=activeSession;
+const w=workouts[s.day];
+
+const all=s.sets.flat();
+const done=all.filter(x=>x.done).length;
+const total=all.length;
 
 $("today").innerHTML=`
+<div class="hero">
 <div class="eyebrow">WORKOUT IN PROGRESS</div>
-<h1>${esc(w.name)}</h1>
+<h1>${escapeHTML(w.name)}</h1>
+</div>
 
-<div class="card hero">
+<div class="session-progress">
 <div class="row">
-<div>
-<div class="eyebrow">SETS COMPLETED</div>
-<div class="stat">${done} / ${total}</div>
+<strong>${done} of ${total} sets complete</strong>
+<span class="muted">
+${Math.round(done/total*100)}%
+</span>
 </div>
-<button class="btn outline small" onclick="pauseWorkout()">
-Save & exit
-</button>
+<div class="progress-track">
+<div class="progress-fill"
+style="width:${done/total*100}%"></div>
 </div>
-<p class="muted">
-Rest approximately 60–90 seconds as needed.
-</p>
 </div>
+
+${equipmentHTML(s.day,s.sets)}
 
 ${w.ex.map((x,i)=>`
-<div class="card">
-<div class="eyebrow">EXERCISE ${i+1} OF ${w.ex.length}</div>
-<h2>${esc(x[0])}</h2>
+<div class="card exercise">
+${gifHTML(x)}
+<div class="exercise-body">
+<div class="eyebrow">EXERCISE ${i+1}</div>
+<div class="exercise-title">
+${escapeHTML(x[0])}
+</div>
+<p class="cue">${escapeHTML(x[4])}</p>
 
-${media(x)}
+<div class="sets">
+${s.sets[i].map((set,j)=>`
+<button
+class="set-box ${set.done?"done":""}"
+onclick="toggleSet(${i},${j})">
+<small>Set ${j+1}</small>
+<strong>${set.done?"✓ ":""}${set.reps}
+${x[6]==="minutes"?"min":
+x[6]==="seconds"?"sec":"reps"}</strong>
+<small>${x[3]==="none"?"Bodyweight":
+set.weight+" lb"}</small>
+</button>`).join("")}
+</div>
 
-<p class="hint">${esc(x[4])}</p>
-
-<p class="muted">
-${x[3]==="pair"
-?"Dumbbell weight shown per hand":
-x[3]==="one"?"Use one dumbbell":
-"Bodyweight or time-based movement"}
-</p>
-
-${session.sets[i].map((s,j)=>`
-<div class="set">
-<b>${j+1}</b>
-<label>
-${/minutes|seconds/i.test(x[0])?"Time":"Reps"}
-<input type="number" min="0" max="999"
-value="${s.reps}"
+<details style="margin-top:12px">
+<summary class="muted">
+Adjust reps / weights
+</summary>
+<div style="margin-top:10px">
+${s.sets[i].map((set,j)=>`
+<div class="edit-row">
+<strong>Set ${j+1}</strong>
+<label>${x[6]==="minutes"?"Minutes":
+x[6]==="seconds"?"Seconds":"Reps"}
+<input type="number"
+min="0" max="999"
+value="${set.reps}"
 onchange="editSet(${i},${j},'reps',this.value)">
 </label>
-<label>
-Weight lb
-<input type="number" min="0" max="100"
-value="${s.weight}"
+<label>Weight lb
+<input type="number"
+min="0" max="100"
+value="${set.weight}"
 ${x[3]==="none"?"disabled":""}
 onchange="editSet(${i},${j},'weight',this.value)">
 </label>
-<button class="${s.done?"done":""}"
-onclick="completeSet(${i},${j})">
-${s.done?"✓":"Done"}
-</button>
 </div>`).join("")}
+</div>
+</details>
 
-<p class="muted">How did your final set feel?</p>
-<select onchange="setEffort(${i},this.value)">
-<option value="">Optional feedback</option>
+<details style="margin-top:12px">
+<summary class="muted">
+Optional effort feedback
+</summary>
+<select style="margin-top:10px"
+onchange="setEffort(${i},this.value)">
+<option value="">Select effort</option>
 ${[
 ["easy","Easy — 4+ reps left"],
 ["right","Just right — 2–3 reps left"],
@@ -541,222 +960,217 @@ ${[
 ["pain","Pain or discomfort"]
 ].map(([v,label])=>`
 <option value="${v}"
-${session.efforts[i]===v?"selected":""}>
+${s.efforts[i]===v?"selected":""}>
 ${label}
 </option>`).join("")}
 </select>
+</details>
+
+</div>
 </div>`).join("")}
 
-<button class="btn wide" onclick="finishWorkout()">
-Finish workout ✓
-</button>`;
-}
+<div class="controls">
+<button class="btn wide"
+onclick="finishWorkout()">
+Finish Workout ✓
+</button>
+<button class="btn secondary wide"
+onclick="saveAndExit()">
+Save & Exit
+</button>
+</div>`;
 }
 
-function startWorkout(){
-if(db.draft){
-if(!confirm(
-"You have an unfinished workout. Replace it with a new session?"
-))return;
-}
+function toggleSet(i,j){
+activeSession.sets[i][j].done=
+!activeSession.sets[i][j].done;
 
-session={
-day,
-date:new Date().toISOString(),
-sets:plan[day].ex.map((x,i)=>
-x[1].map((reps,j)=>({
-reps,
-weight:getWeights(day,i)[j],
-done:false
-}))),
-efforts:{}
-};
-
-db.draft=session;
+db.draft=activeSession;
 save();
-stage="work";
-render();
-}
 
-function resume(){
-if(!db.draft)return;
-
-session=db.draft;
-day=session.day;
-session.efforts??={};
-stage="work";
-tab("today");
-render();
+const y=window.scrollY;
+renderSession();
+window.scrollTo(0,y);
 }
 
 function editSet(i,j,field,value){
 const n=Number(value);
+
 if(!Number.isFinite(n)||n<0||n>999)return;
 
-session.sets[i][j][field]=n;
-db.draft=session;
+activeSession.sets[i][j][field]=n;
+db.draft=activeSession;
 save();
-}
-
-function completeSet(i,j){
-session.sets[i][j].done=!session.sets[i][j].done;
-db.draft=session;
-save();
-render();
 }
 
 function setEffort(i,value){
-session.efforts[i]=value;
-db.draft=session;
+activeSession.efforts[i]=value;
+db.draft=activeSession;
 save();
 }
 
-function pauseWorkout(){
-db.draft=session;
+function saveAndExit(){
+db.draft=activeSession;
 save();
-session=null;
-stage="home";
-render();
+activeSession=null;
+renderToday();
+window.scrollTo(0,0);
 }
 
 function finishWorkout(){
-const sets=session.sets.flat();
-const completed=sets.filter(s=>s.done).length;
+const s=activeSession;
+const all=s.sets.flat();
+const completed=all.filter(x=>x.done).length;
 
-if(!completed){
-alert("Mark at least one set complete first.");
+if(completed===0){
+alert("Complete at least one set first.");
 return;
 }
 
 if(!confirm("Finish and save this workout?"))return;
 
-const d=session.day;
+const d=s.day;
 
 db.history.push({
-id:"v4-"+Date.now(),
+id:"v5-"+Date.now(),
 date:new Date().toISOString(),
-name:plan[d].name,
+name:workouts[d].name,
 completed,
-total:sets.length,
-details:plan[d].ex.map((x,i)=>({
+total:all.length,
+details:workouts[d].ex.map((x,i)=>({
 name:x[0],
-sets:session.sets[i].map(s=>({...s})),
-effort:session.efforts[i]||""
+type:x[6],
+equipment:x[3],
+sets:s.sets[i].map(y=>({...y})),
+effort:s.efforts[i]||""
 }))
 });
 
-session.sets.forEach((exerciseSets,i)=>{
-const finished=exerciseSets.filter(s=>s.done);
-
-if(finished.length===exerciseSets.length){
-db.weights[key(d,i)]=exerciseSets.map(s=>s.weight);
+s.sets.forEach((sets,i)=>{
+if(sets.every(x=>x.done)){
+db.weights[weightKey(d,i)]=
+sets.map(x=>x.weight);
 }
 
-if(session.efforts[i]){
-db.feedback[key(d,i)]=session.efforts[i];
+if(s.efforts[i]){
+db.feedback[weightKey(d,i)]=s.efforts[i];
 }
 });
 
 db.draft=null;
 save();
 
-session=null;
-stage="home";
-render();
-tab("progress");
+activeSession=null;
+renderToday();
+showTab("progress");
+window.scrollTo(0,0);
 }
 
-function progress(){
-$("progress").innerHTML=`
-<h1>Your progress.</h1>
+function deleteWorkout(id){
+if(!confirm("Delete this workout permanently?"))return;
 
-<div class="card hero">
-<div class="eyebrow">WORKOUTS RECORDED</div>
-<div class="stat">${db.history.length}</div>
+db.history=db.history.filter(x=>
+String(x.id)!==String(id)
+);
+save();
+renderProgress();
+}
+
+function renderProgress(){
+$("progress").innerHTML=`
+<div class="hero">
+<div class="eyebrow">YOUR CONSISTENCY</div>
+<h1>Your Progress</h1>
 </div>
 
-<div class="card">
-<h3>Workout history</h3>
+<div class="equipment">
+<div class="eyebrow">WORKOUTS RECORDED</div>
+<h1>${db.history.length}</h1>
+</div>
 
 ${db.history.length?
-db.history.slice().reverse().map((x,i)=>`
-<div class="day">
+db.history.slice().reverse().map(x=>`
+<div class="card detail">
 <div class="row">
 <div>
-<b>${esc(x.name||"Workout")}</b>
-<div class="muted">
-${x.date?new Date(x.date).toLocaleDateString():""}
+<h3>${escapeHTML(x.name||"Workout")}</h3>
+<p class="muted">
+${x.date?
+new Date(x.date).toLocaleDateString():""}
 · ${x.completed??0}/${x.total??0}
 ${x.legacy?"exercises":"sets"}
+</p>
 </div>
-</div>
-<button class="btn outline small"
-onclick="deleteWorkout(${JSON.stringify(String(x.id)).replace(/"/g,"&quot;")})">
+<button class="btn secondary small"
+onclick='deleteWorkout(${JSON.stringify(String(x.id)).replace(/'/g,"&#39;")})'>
 Delete
 </button>
 </div>
 
 ${Array.isArray(x.details)?`
 <details>
-<summary class="muted">View completed sets</summary>
+<summary>View sets and weights</summary>
 ${x.details.map(e=>`
 <p class="muted">
-<b>${esc(e.name)}</b>
+<strong>${escapeHTML(e.name)}</strong>
 ${e.sets.map((s,j)=>`
-<br>Set ${j+1}: ${s.reps} reps · ${s.weight} lb
-${s.done?"✓":"—"}
+<br>Set ${j+1}:
+${s.reps}
+${e.type==="minutes"?"min":
+e.type==="seconds"?"sec":"reps"}
+${s.weight>0?" · "+s.weight+" lb":""}
+${s.done?" ✓":" —"}
 `).join("")}
 </p>`).join("")}
 </details>`:""}
 </div>`).join(""):
-'<p class="muted">No workouts recorded yet.</p>'}
-</div>
+`<div class="card detail">
+<p class="muted">
+Your completed workouts will appear here.
+</p>
+</div>`}
 
 <p class="muted">
-Your workout history is stored locally in this browser.
+Workout data is saved in this browser.
 Clearing website data may erase it.
 </p>`;
 }
 
-function deleteWorkout(id){
-if(!confirm("Delete this workout permanently?"))return;
-
-db.history=db.history.filter(x=>String(x.id)!==id);
-save();
-progress();
-}
-
-function coach(){
+function renderCoach(){
 $("coach").innerHTML=`
-<h1>Your coach.</h1>
-<div class="card hero">
-<h3>Strength, gradually.</h3>
+<div class="hero">
+<div class="eyebrow">PERSONAL STRENGTH STUDIO</div>
+<h1>Your Coach</h1>
+</div>
+
+<div class="card detail">
+<h3>Train with intention.</h3>
 <p>
-Build consistency first. Increase dumbbell weights
-only when the current sets feel controlled and
-you can maintain good technique.
+Your workout uses controlled repetitions
+and gradually increasing weights.
+</p>
+<p>
+When all sets feel comfortable and
+your technique is consistent,
+consider a small weight increase.
+</p>
+<p class="muted">
+Your weights carry into future sessions
+when you complete all sets of an exercise.
+Automatic AI progression is not active yet.
 </p>
 </div>
-<div class="card">
-<h3>Your progression</h3>
+
+<div class="card detail">
+<h3>Your training equipment</h3>
 <p class="muted">
-Your actual weights and repetitions are saved.
-Completed exercise weights carry into future sessions.
-Automatic AI progression is not enabled yet.
+5, 8, 10, 15, 20 and 25 lb dumbbells.
+Yoga mat and bodyweight exercises.
 </p>
 </div>`;
 }
 
-$("nutrition").innerHTML=`
-<h1>Nutrition.</h1>
-<div class="card">
-<h3>Coming later</h3>
-<p class="muted">
-Nutrition coaching will be added in a future version.
-</p>
-</div>`;
-
-render();
+renderToday();
 </script>
 </body>
 </html>
