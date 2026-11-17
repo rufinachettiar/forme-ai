@@ -190,7 +190,7 @@ function load(){
  }
  state.bodyHistory=Array.isArray(state.bodyHistory)?state.bodyHistory:[];
  state.measurements=Array.isArray(state.measurements)&&state.measurements.length?state.measurements:[{...BASE}];
- state.drafts=state.drafts&&typeof state.drafts==='object'?state.drafts:{};
+ state.legacyBackups =   state.legacyBackups &&   typeof state.legacyBackups === "object" &&   !Array.isArray(state.legacyBackups)     ? state.legacyBackups     : {};  state.selectedWeek = Math.max(   1, Math.min(12, Number(state.selectedWeek) || 1) );  state.selectedDay = Math.max(   0, Math.min(6, Number(state.selectedDay) || 0) );
  if(!state.legacyImported){
   for(const k of ['forme_v06','forme_v05','forme_v04','forme_v03','forme_v02','forme_v01']){
    let v=localStorage.getItem(k);
@@ -1125,8 +1125,24 @@ document.addEventListener('submit',ev=>{
 });
 
 // Initialize the app without clearing existing browser storage.
-load();
-render();
+try {
+  load();
+  render();
+} catch (error) {
+  console.error("Forme AI startup error:", error);
+
+  document.getElementById("content").innerHTML = `
+    <div class="card panel">
+      <h2>Forme AI needs a repair</h2>
+      <p>Your workout data has not been intentionally cleared.</p>
+      <p>Please take a screenshot of this error:</p>
+      <pre id="startupError"></pre>
+    </div>
+  `;
+
+  document.getElementById("startupError").textContent =
+    error.message || String(error);
+}
 
 </script>
 </body>
